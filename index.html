@@ -63,7 +63,7 @@
   }
 
   #letter-container {
-    display: none; /* Initially hide the letter container */
+    opacity: 0; /* Initially hide the letter container */
     position: absolute;
     top: 50%;
     left: 50%;
@@ -86,6 +86,24 @@
     line-height: 1.5;
     margin: 0;
     padding: 10px; /* Add padding for better readability */
+  }
+
+  #done-reading {
+    display: none; /* Initially hide the button */
+    margin-top: 20px;
+    padding: 12px 24px;
+    background-color: #A50023;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    font-size: 18px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  #done-reading:hover {
+    background-color: #92001F;
   }
 
   /* Custom scrollbar */
@@ -134,21 +152,30 @@
     </div>
   </div>
 </div>
+<button id="done-reading" onclick="goToCatPage()">Done Reading</button>
 
 <script>
 function toggleScroll() {
   var scrollImg = document.getElementById("scroll-img");
   var letterContainer = document.getElementById("letter-container");
+  var doneReadingButton = document.getElementById("done-reading");
 
   if (scrollImg.style.opacity !== "0") {
     scrollImg.style.opacity = "0";
-    letterContainer.style.display = "block";
+    letterContainer.style.opacity = "1";
+    doneReadingButton.style.display = "none";
   } else {
     scrollImg.style.opacity = "1";
-    letterContainer.style.display = "none";
+    letterContainer.style.opacity = "0";
+    doneReadingButton.style.display = "block";
   }
+}
+
+function goToCatPage() {
+  window.location.href = "cat_page.html";
 }
 </script>
 
 </body>
 </html>
+
