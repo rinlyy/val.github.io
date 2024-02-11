@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Scroll</title>
+<style>
+  body {
+    font-family: Lucinda Handwriting, cursive;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to bottom right, #FFB2C0, #FFD4D8);
+    position: relative;
+    overflow: hidden;
+    cursor: url('https://image.flaticon.com/icons/png/512/597/597796.png'), auto; /* Custom pink arrow cursor */
+  }
+
+  body:before {
+    content: "";
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    border: 30px solid #92001F; /* Increased border thickness */
+    border-image: url('https://via.placeholder.com/20') 30 round;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+    z-index: -1; /* Move the border behind the content */
+  }
+
+  #scroll-container {
+    width: 80%; /* Set the width of the scroll container */
+    max-width: 600px; /* Limit the maximum width of the scroll container */
+    height: 80%; /* Set the height of the scroll container */
+    position: relative;
+    overflow: hidden;
+  }
+
+  #scroll {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Set the width of the scroll */
+    height: 100%; /* Set the height of the scroll */
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 0; /* Ensure the image is below the "Click me!" sign */
+  }
+
+  #scroll-img {
+    width: 100%;
+    height: auto;
+    transition: opacity 0.5s ease-in-out; /* Add transition for smooth disappearance */
+    z-index: 1; /* Ensure the image is above the background */
+    display: block;
+    margin: 0 auto; /* Center the image horizontally */
+  }
+
+  #letter-container {
+    display: none; /* Initially hide the letter container */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%; /* Set the width of the letter container */
+    max-width: 800px; /* Limit the maximum width of the letter container */
+    height: 90%; /* Set the height of the letter container */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    z-index: 1; /* Ensure the letter container is above the scroll image */
+    border: 4px solid #A50023; /* Increased border thickness and changed color */
+    background-color: white; /* Set background color to white */
+    animation: revealLetter 5s forwards; /* Longer animation duration */
+  }
+
+  #letter {
+    font-size: 24px; /* Increase font size */
+    line-height: 1.5;
+    margin: 0;
+    padding: 10px; /* Add padding for better readability */
+  }
+
+  /* Custom scrollbar */
+  #letter-container::-webkit-scrollbar {
+    width: 5px; /* Reduce the width of the scrollbar */
+  }
+
+  #letter-container::-webkit-scrollbar-track {
+    background: #FFD4D8; /* Match the scrollbar track color to the background */
+  }
+
+  #letter-container::-webkit-scrollbar-thumb {
+    background: #FFB2C0; /* Match the scrollbar thumb color to the background */
+    border-radius: 4px;
+  }
+
+  #letter-container::-webkit-scrollbar-thumb:hover {
+    background: #FFD4D8; /* Change the thumb color on hover */
+  }
+
+  @keyframes revealLetter {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div id="scroll-container">
+  <div id="scroll" onclick="toggleScroll()">
+    <img id="scroll-img" src="scroll.jpg">
+    <div id="letter-container">
+      <div id="letter">
+        <p>To My Pretty Baby,</p>
+        <p>Happy Valentine's Day, baby! I hope you know how happy I am that we're together. Thank you so much for being mine. I hope I'm able to make you feel all the love you deserve. You make it seem like life isn't so bad. I look forward to the day when we no longer have to say goodbye at the end of the day.</p>
+        <p>Thank you for always being there for me and trying your best to handle me and my mood swings and unstableness mentally. I hope you know how much I appreciate the effort you put into trying to change habits that trigger me. I know it isn't easy, but I want you to know that I am also very proud of you for trying. I know I'm not perfect either, so hopefully you'll let me know when I'm doing or saying something that triggers you. My worst trigger would be unconsciously hurting you, so please let me change my habits that bother you.</p>
+        <p>I hope we can both grow and heal together. Please always remember that I would rather sit and listen to you scramble up an explanation for hours than not talk at all. Please never think of yourself as a bother or an annoyance.</p>
+        <p>I want to know you more so I can love you more. I want to know every single habit, every single expression, and all the lines and crevices you have. All the things you aren't comfortable letting me know yet, I hope you know I will never judge you because of anything. I'm willing to wait until you're able to tell me.</p>
+        <p>Yours Always,</p>
+        <p>Mari</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function toggleScroll() {
+  var scrollImg = document.getElementById("scroll-img");
+  var letterContainer = document.getElementById("letter-container");
+
+  if (scrollImg.style.opacity !== "0") {
+    scrollImg.style.opacity = "0";
+    letterContainer.style.display = "block";
+  } else {
+    scrollImg.style.opacity = "1";
+    letterContainer.style.display = "none";
+  }
+}
+</script>
+
+</body>
+</html>
